@@ -16,7 +16,7 @@ class ShootNode : public rclcpp::Node
     ShootNode() : Node("shoot_node")
     {
       sub_ = this->create_subscription<sensor_msgs::msg::Joy>("joy", 10, std::bind(&ShootNode::joy_callback, this, std::placeholders::_1));
-      frame_pub_ = this->create_publisher<can_plugins2::msg::RobomasFrame>("robomaster", 10);
+      frame_pub_ = this->create_publisher<can_plugins2::msg::RobomasFrame>("robomas_frame", 10);
       target_pub_ = this->create_publisher<can_plugins2::msg::RobomasTarget>("robomas_target1", 10);
     }
 };
