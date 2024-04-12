@@ -9,7 +9,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
-find_package(can_plugins2 REQUIRED)
+find_package(robomas_plugins REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -19,7 +19,7 @@ target_include_directories(shoot_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 target_compile_features(shoot_node PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
-ament_target_dependencies(shoot_node rclcpp can_plugins2 sensor_msgs)
+ament_target_dependencies(shoot_node rclcpp robomas_plugins sensor_msgs)
 
 install(TARGETS shoot_node
   DESTINATION lib/${PROJECT_NAME}

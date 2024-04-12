@@ -1,23 +1,23 @@
 #include <cstdio>
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/joy.hpp>
-#include <can_plugins2/msg/robomas_frame.hpp>
-#include <can_plugins2/msg/robomas_target.hpp>
+#include <robomas_plugins/msg/robomas_frame.hpp>
+#include <robomas_plugins/msg/robomas_target.hpp>
 #include <shooter/robomas_utils.hpp>
 
 class ShootNode : public rclcpp::Node
 {
   private:
     rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr sub_;
-    rclcpp::Publisher<can_plugins2::msg::RobomasFrame>::SharedPtr frame_pub_;
-    rclcpp::Publisher<can_plugins2::msg::RobomasTarget>::SharedPtr target_pub_;
+    rclcpp::Publisher<robomas_plugins::msg::RobomasFrame>::SharedPtr frame_pub_;
+    rclcpp::Publisher<robomas_plugins::msg::RobomasTarget>::SharedPtr target_pub_;
     void joy_callback(const sensor_msgs::msg::Joy::SharedPtr msg);
   public:
     ShootNode() : Node("shoot_node")
     {
       sub_ = this->create_subscription<sensor_msgs::msg::Joy>("joy", 10, std::bind(&ShootNode::joy_callback, this, std::placeholders::_1));
-      frame_pub_ = this->create_publisher<can_plugins2::msg::RobomasFrame>("robomas_frame", 10);
-      target_pub_ = this->create_publisher<can_plugins2::msg::RobomasTarget>("robomas_target1", 10);
+      frame_pub_ = this->create_publisher<robomas_plugins::msg::RobomasFrame>("robomas_frame", 10);
+      target_pub_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target1", 10);
     }
 };
 
