@@ -18,11 +18,20 @@ namespace robomas
         frame->mode = 3;
         frame->motor = id;
         frame->temp = 50;
-        frame->velkp = 0.25;
-        frame->velki = 10;
-        frame->poskp = 500;
+        frame->velkp = 0.15;
+        frame->velki = 9;
+        frame->poskp = 0.5;
         frame->tyoku_vel_target = 450;
         frame->tyoku_pos_target = 5450;
+        return frame;
+    }
+
+    static std::unique_ptr<robomas_plugins::msg::RobomasFrame> get_dis_frame(const uint16_t index) 
+    {
+        auto frame = std::make_unique<robomas_plugins::msg::RobomasFrame>();
+        frame->mode = 0;
+        frame->motor = index;
+        frame->temp = 50;
         return frame;
     }
 }
