@@ -21,8 +21,8 @@ namespace robomas
         frame->velkp = 0.15;
         frame->velki = 9;
         frame->poskp = 0.5;
-        frame->tyoku_vel_target = 450;
-        frame->tyoku_pos_target = 5450;
+        frame->tyoku_vel_target = target_vel;
+        frame->tyoku_pos_target = target_pos;
         return frame;
     }
 

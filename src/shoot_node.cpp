@@ -22,11 +22,11 @@ class ShootNode : public rclcpp::Node
 };
 
 void ShootNode::joy_callback(const sensor_msgs::msg::Joy::SharedPtr msg){
-  if(msg->buttons[1] == 1){
+  if(msg->buttons[1] == 1){//Aボタン
     target_pub_->publish(robomas::get_target(1.0));
   }
   if(msg->buttons[7] == 1){
-    frame_pub_->publish(robomas::get_berutyoku_frame(4,943,4000));
+    frame_pub_->publish(robomas::get_berutyoku_frame(4,943,5450));
   }
   if(msg->buttons[6] == 1){
     frame_pub_->publish(robomas::get_dis_frame(4));
