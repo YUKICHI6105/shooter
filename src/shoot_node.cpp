@@ -18,12 +18,15 @@ class ShootNode : public rclcpp::Node
       sub_ = this->create_subscription<sensor_msgs::msg::Joy>("joy", 10, std::bind(&ShootNode::joy_callback, this, std::placeholders::_1));
       frame_pub_ = this->create_publisher<robomas_plugins::msg::RobomasFrame>("robomas_frame", 10);
       target_pub_ = this->create_publisher<robomas_plugins::msg::RobomasTarget>("robomas_target4", 10);
+      count = 0;
     }
+    uint64_t count;
 };
 
 void ShootNode::joy_callback(const sensor_msgs::msg::Joy::SharedPtr msg){
   if(msg->buttons[5] == 1){//RBボタン
     target_pub_->publish(robomas::get_target(15000));
+    count = 0;
   }
   if(msg->buttons[7] == 1){
     frame_pub_->publish(robomas::get_pos_frame(4,false));
@@ -31,6 +34,12 @@ void ShootNode::joy_callback(const sensor_msgs::msg::Joy::SharedPtr msg){
   if(msg->buttons[6] == 1){
     frame_pub_->publish(robomas::get_dis_frame(4));
   }
+  if(count > 50){
+    if(count < 100){
+      frame_pub_->publish(robomas::get_pos_frame(4,false));
+    }
+  }
+  count++;
 }
 
 int main(int argc, char *argv[])

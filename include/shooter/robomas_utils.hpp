@@ -1,4 +1,4 @@
-#include <robomas_plugins/msg/frame.hpp>
+// #include <robomas_plugins/msg/frame.hpp>
 #include <robomas_plugins/msg/robomas_frame.hpp>
 #include <robomas_plugins/msg/robomas_target.hpp>
 #include <rclcpp/rclcpp.hpp>
